@@ -15,7 +15,7 @@ export default function SelectMovieScreen() {
     promise.catch(err => console.log(err.response));
   }, []);
 
-  return (
+  return movies.length > 0 ? (
     <>
       <header>
         <h1>CINEFLEX</h1>
@@ -37,5 +37,5 @@ export default function SelectMovieScreen() {
       </div>
 
     </>
-  )
+  ) : <div className='loading' />
 }

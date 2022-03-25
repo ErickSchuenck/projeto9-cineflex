@@ -1,6 +1,10 @@
 import React from 'react'
+import axios from 'axios'
 
 export default function SelectTimeScreen() {
+
+  // https://mock-api.driven.com.br/api/v5/cineflex/movies/ID_DO_FILME/showtimes
+
   return (
     <>
       <header>
