@@ -126,6 +126,7 @@ footer h1{
   text-align: left;
 }
 .weekday-time{
+  cursor: pointer;
   height: 43px;
   width: 83px;
   border-radius: 3px;
@@ -163,6 +164,10 @@ footer h1{
   height: 72px;
   width: 48px;
   border-radius: 0px;
+}
+.footer-decoy{
+  height: 117px;
+  width: 100%;
 }
 
 @keyframes is-rotating { 

@@ -45,7 +45,7 @@ export default function SelectTimeScreen() {
           </>
         )
       })}
-
+      <div className='footer-decoy'></div>
       <footer>
         <div className='small-movie-container'>
           {movieTime == null ? null : <img alt='pequeno poster do filme escolhido' src={movieTime.posterURL} />}
