@@ -1,8 +1,11 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
+import { Link } from "react-router-dom";
 import axios from 'axios'
 
 export default function SelectMovieScreen() {
+
+
 
   const [movies, setMovies] = useState([]);
   useEffect(() => {
@@ -27,11 +30,13 @@ export default function SelectMovieScreen() {
         {
           movies.map(movie => {
             const { id, posterURL } = movie;
-            return <div className='poster-container'>
-              <div className='poster' key={id}>
-                <img alt='filme atual' src={posterURL} />
+            return <Link to={`/SelectTimeScreen/${id}`}>
+              <div className='poster-container'>
+                <div className='poster' key={id}>
+                  <img alt='filme atual' src={posterURL} />
+                </div>
               </div>
-            </div>
+            </Link>
           })
         }
       </div>
