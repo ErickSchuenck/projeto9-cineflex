@@ -47,7 +47,9 @@ export default function SelectTimeScreen() {
       })}
 
       <footer>
-        <div className='small-movie-container'><img alt='pequeno poster do filme escolhido' src={null}></img></div>
+        <div className='small-movie-container'>
+          {movieTime == null ? null : <img alt='pequeno poster do filme escolhido' src={movieTime.posterURL} />}
+        </div>
         {movieTime == null ? null : <h1>{movieTime.title}</h1>}
       </footer>
     </>
