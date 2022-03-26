@@ -6,18 +6,18 @@ import { useParams } from 'react-router-dom';
 export default function SelectTimeScreen() {
 
   const { movieId } = useParams()
-  const [movieTime, setMovieTime] = useState([]);
+  const [movieTime, setMovieTime] = useState(null);
 
   useEffect(() => {
     const promise = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/movies/${movieId}/showtimes`)
     promise.then((response) => {
+      console.log('response', response)
       const { data } = response;
-      console.log(data)
       setMovieTime(data);
     })
     promise.catch(err => console.log(err.response));
-  }, []);
-
+  }, [movieId]);
+  console.log(movieTime)
   return (
     <>
       <header>
@@ -27,10 +27,28 @@ export default function SelectTimeScreen() {
         <h1>Selecione o horário</h1>
       </div>
 
-      <h1>{movieTime.title}</h1>
+      {movieTime == null ? <div className='loading' /> : movieTime.days.map(day => {
+        return (
+          <>
+            <div className='weekday'>
+              <h1>{day.weekday} - {day.date}</h1>
+            </div>
+            <div className='flex'>
+              {day.showtimes.map(showtime => {
+                return (
+                  <div className='weekday-time'>
+                    <h1>{showtime.name}</h1>
+                  </div>
+                )
+              })}
+            </div>
+          </>
+        )
+      })}
 
       <footer>
-        <h1>-test- Movie name -test-</h1>
+        <div className='small-movie-container'><img alt='pequeno poster do filme escolhido' src={null}></img></div>
+        {movieTime == null ? null : <h1>{movieTime.title}</h1>}
       </footer>
     </>
   )

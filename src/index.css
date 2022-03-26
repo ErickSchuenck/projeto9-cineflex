@@ -113,6 +113,50 @@ footer h1{
     border-top-color: #E8833A;
     border-radius: 50%;
 }
+.weekday{
+  margin-left: 24px;
+}
+.weekday h1{
+  font-family: Roboto;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 23px;
+  letter-spacing: 0.02em;
+  text-align: left;
+}
+.weekday-time{
+  height: 43px;
+  width: 83px;
+  border-radius: 3px;
+  background-color:#E8833A;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  margin: 8px;
+}
+.weekday-time h1{
+  font-family: Roboto;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 21px;
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+.flex{
+  display: flex;
+  margin-left: 15px;
+}
+.small-movie-container{
+  height: 89px;
+  width: 64px;
+  margin: 10px;
+  background-color: white;
+  border-radius: 2px;
+}
+
 @keyframes is-rotating { 
     to {
         transform: rotate(1turn);
