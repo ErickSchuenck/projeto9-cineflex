@@ -9,9 +9,19 @@ export default function SelectSeatScreen() {
   const [name, setName] = useState("");
   const [cpf, setCpf] = useState("");
 
-  function selectSeat(seat) {
-    console.log(seat.isSelected)
-    seat.isSelected = !seat.isSelected
+  function selectSeat(selectedSeat) {
+    setMovieSeat({
+      ...movieSeat,
+      seats: movieSeat.seats.map(seat => {
+        if (selectedSeat.id === seat.id) {
+          return {
+            ...seat,
+            isSelected: !seat.isSelected
+          }
+        }
+        return seat
+      })
+    });
   }
   useEffect(() => {
     const promise = axios.get(`
@@ -25,7 +35,8 @@ https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${daysId}/seats
         ...data,
         seats: data.seats.map(seat => {
           return {
-            ...seat, isSelected: false
+            ...seat,
+            isSelected: false
           }
         })
       });
@@ -49,9 +60,7 @@ https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${daysId}/seats
             }
             return <div className='seat-icon disponivel' key={seat.id} onClick={() => selectSeat(seat)}><h1>{seat.name}</h1></div>
           }
-          else {
-            return <div className='seat-icon indisponivel' key={seat.id}><h1>{seat.name}</h1></div>
-          }
+          return <div className='seat-icon indisponivel' key={seat.id}><h1>{seat.name}</h1></div>
         })
         }
       </div>
