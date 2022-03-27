@@ -6,13 +6,13 @@ import axios from 'axios'
 export default function SelectSeatScreen() {
 
   const [movieSeat, setMovieSeat] = useState(null);
+  const [selected, setSelected] = useState(false);
   const [ids, setIds] = useState([]);
   const [name, setName] = useState("");
   const [cpf, setCpf] = useState("");
 
   function selectSeat() {
-    console.log('seat bein selected')
-
+    setSelected(!selected)
   }
   useEffect(() => {
     const promise = axios.get(`
@@ -39,7 +39,8 @@ https://mock-api.driven.com.br/api/v5/cineflex/showtimes/112/seats
       <div className='seats'>
         {movieSeat == null ? <div className='loading' /> : movieSeat.seats.map((seats) => {
           if (seats.isAvailable === true) {
-            return <div className='seat-icon disponivel' onClick={() => selectSeat()}><h1>{seats.name}</h1></div>
+            if (selected === false) { return <div className='seat-icon disponivel' onClick={() => selectSeat()}><h1>{seats.name}</h1></div> }
+            if (selected === true) { return <div className='seat-icon selecionado' onClick={() => selectSeat()}><h1>{seats.name}</h1></div> }
           }
           if (seats.isAvailable === false) {
             return <div className='seat-icon indisponivel' onClick={() => selectSeat()}><h1>{seats.name}</h1></div>
