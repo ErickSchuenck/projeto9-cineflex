@@ -169,6 +169,10 @@ footer h1{
   height: 117px;
   width: 100%;
 }
+a:hover, a:visited, a:link, a:active
+{
+    text-decoration: none;
+}
 
 @keyframes is-rotating { 
     to {

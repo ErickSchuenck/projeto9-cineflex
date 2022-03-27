@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 export default function SelectTimeScreen() {
 
@@ -36,9 +37,11 @@ export default function SelectTimeScreen() {
             <div className='flex'>
               {day.showtimes.map(showtime => {
                 return (
-                  <div className='weekday-time'>
-                    <h1>{showtime.name}</h1>
-                  </div>
+                  <Link to={`/SelectSeatScreen/${showtime.id}`}>
+                    <div className='weekday-time' >
+                      <h1>{showtime.name}</h1>
+                    </div>
+                  </Link>
                 )
               })}
             </div>
