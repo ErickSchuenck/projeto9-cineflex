@@ -5,8 +5,6 @@ import axios from 'axios'
 
 export default function SelectMovieScreen() {
 
-
-
   const [movies, setMovies] = useState([]);
   useEffect(() => {
     const promise = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/movies`)
