@@ -1,32 +1,37 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from 'axios'
 
 export default function SelectSeatScreen() {
-
+  const { daysId } = useParams()
   const [movieSeat, setMovieSeat] = useState(null);
-  const [selected, setSelected] = useState(false);
-  const [ids, setIds] = useState([]);
   const [name, setName] = useState("");
   const [cpf, setCpf] = useState("");
 
-  function selectSeat() {
-    setSelected(!selected)
+  function selectSeat(seat) {
+    console.log(seat.isSelected)
+    seat.isSelected = !seat.isSelected
   }
   useEffect(() => {
     const promise = axios.get(`
-https://mock-api.driven.com.br/api/v5/cineflex/showtimes/112/seats
+https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${daysId}/seats
 `)
     promise.then((response) => {
       const { data } = response;
       console.log(data)
       console.log(data.seats)
-      setMovieSeat(data);
+      setMovieSeat({
+        ...data,
+        seats: data.seats.map(seat => {
+          return {
+            ...seat, isSelected: false
+          }
+        })
+      });
     })
     promise.catch(err => console.log(err.response));
-  }, []);
-
+  }, [daysId]);
 
   return (
     <>
@@ -37,13 +42,15 @@ https://mock-api.driven.com.br/api/v5/cineflex/showtimes/112/seats
         <h1>Selecione o(s) assento(s)</h1>
       </div>
       <div className='seats'>
-        {movieSeat == null ? <div className='loading' /> : movieSeat.seats.map((seats) => {
-          if (seats.isAvailable === true) {
-            if (selected === false) { return <div className='seat-icon disponivel' onClick={() => selectSeat()}><h1>{seats.name}</h1></div> }
-            if (selected === true) { return <div className='seat-icon selecionado' onClick={() => selectSeat()}><h1>{seats.name}</h1></div> }
+        {movieSeat == null ? <div className='loading' /> : movieSeat.seats.map((seat) => {
+          if (seat.isAvailable) {
+            if (seat.isSelected) {
+              return <div className='seat-icon selecionado' key={seat.id} onClick={() => selectSeat(seat)}><h1>{seat.name}</h1></div>
+            }
+            return <div className='seat-icon disponivel' key={seat.id} onClick={() => selectSeat(seat)}><h1>{seat.name}</h1></div>
           }
-          if (seats.isAvailable === false) {
-            return <div className='seat-icon indisponivel' onClick={() => selectSeat()}><h1>{seats.name}</h1></div>
+          else {
+            return <div className='seat-icon indisponivel' key={seat.id}><h1>{seat.name}</h1></div>
           }
         })
         }

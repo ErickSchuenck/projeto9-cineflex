@@ -171,13 +171,7 @@ footer h1{
   height: 117px;
   width: 100%;
 }
-.seats{
-  width: 400px;
-  display: flex;
-  flex-wrap: wrap;
-  margin-left: 50%;
-  transform: translate(-50%,0%);
-}
+
 .description{
   margin-top: 14px;
   width: 400px;
@@ -202,6 +196,13 @@ footer h1{
   line-height: 15px;
   letter-spacing: -0.013em;
 }
+.seats{
+  width: 400px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 50%;
+  transform: translate(-50%,0%);
+}
 .seat-icon{
   margin: 7px;
   height: 26px;
@@ -221,7 +222,6 @@ footer h1{
   line-height: 13px;
   letter-spacing: 0.04em;
   text-align: center;
-
 }
 .infos{
   margin-left: 50%;
@@ -237,6 +237,10 @@ footer h1{
   line-height: 21px;
   letter-spacing: 0em;
   text-align: left;
+}
+.infos h2{
+  margin-bottom: 10px;
+  margin-top: 25px;
 }
 .infos input{
   margin-top: 5px;
@@ -279,6 +283,26 @@ footer h1{
 .selecionado{
   background-color: #8DD7CF;
 }
+.confirmed{
+  margin-top: 64px;
+  height: 110px;
+  width: 100vw;
+  border-radius: nullpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.confirmed h1{
+  font-family: Roboto;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: 0.04em;
+  text-align: center;
+  color: #247A6B;
+}
+
 a:hover, a:visited, a:link, a:active{
     text-decoration: none;
 }
