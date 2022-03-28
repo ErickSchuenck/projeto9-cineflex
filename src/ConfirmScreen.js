@@ -1,6 +1,8 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 export default function ConfirmScreen() {
+
   const movieInfo = 'Enola Holmes 24/06/2021 15:00';
   const testObject = {
     ids: [1, 2, 3],
@@ -10,7 +12,6 @@ export default function ConfirmScreen() {
 
   function reloadPage() {
     console.log('reloadin')
-    Location.reload()
   }
 
   return (
@@ -33,7 +34,9 @@ export default function ConfirmScreen() {
         <h2>Comprador</h2>
         <h1>Nome: {testObject.name}</h1>
         <h1>Cpf: {testObject.cpf}</h1>
-        <button onClick={() => { reloadPage() }}><h1>Voltar para Home</h1></button>
+        <Link to={`/`}>
+          <button onClick={() => { reloadPage() }}><h1>Voltar para Home</h1></button>
+        </Link>
       </div>
     </>
   )

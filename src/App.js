@@ -14,7 +14,7 @@ function App() {
         <Route path="/" element={<SelectMovieScreen />} />
         <Route path="/SelectTimeScreen/:movieId" element={<SelectTimeScreen />} />
         <Route path="/SelectSeatScreen/:daysId" element={<SelectSeatScreen />} />
-        <Route path="/ConfirmScreen" element={<ConfirmScreen />} />
+        <Route path="/ConfirmScreen/sucesso" element={<ConfirmScreen />} />
       </Routes>
     </BrowserRouter>
   );

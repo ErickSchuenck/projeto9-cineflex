@@ -8,6 +8,7 @@ export default function SelectSeatScreen() {
   const [movieSeat, setMovieSeat] = useState(null);
   const [name, setName] = useState("");
   const [cpf, setCpf] = useState("");
+  const [boughtSeats, setBoughtSeats] = useState("");
 
   function selectSeat(selectedSeat) {
     setMovieSeat({
@@ -30,11 +31,13 @@ export default function SelectSeatScreen() {
     const ids = filteredSeats.map(seat => {
       return seat.id
     })
+    setBoughtSeats(ids)
     const data = {
       ids,
       name,
       cpf
     }
+    axios.post(`https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many`, data)
   }
   useEffect(() => {
     const promise = axios.get(`
@@ -94,9 +97,11 @@ https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${daysId}/seats
         <input type="text" onChange={event => setName(event.target.value)} placeholder='Digite seu nome...'></input>
         <h1>CPF do comprador:</h1>
         <input type="text" onChange={event => setCpf(event.target.value)} placeholder='Digite seu cpf...'></input>
-        <button onClick={() => submitData()}>
-          <h1>Reservar assento(s)</h1>
-        </button>
+        <Link to={`/ConfirmScreen/sucesso`}>
+          <button onClick={() => submitData()}>
+            <h1>Reservar assento(s)</h1>
+          </button>
+        </Link>
       </div>
       <footer>
         <div className='small-movie-container'>
