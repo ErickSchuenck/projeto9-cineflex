@@ -10,7 +10,6 @@ export default function SelectMovieScreen() {
     const promise = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/movies`)
     promise.then((response) => {
       const { data } = response;
-      console.log(data)
       setMovies(data);
     })
     promise.catch(err => console.log(err.response));

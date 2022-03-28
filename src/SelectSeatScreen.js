@@ -3,12 +3,14 @@ import { useState, useEffect } from 'react'
 import { Link, useParams } from "react-router-dom";
 import axios from 'axios'
 
-export default function SelectSeatScreen() {
+export default function SelectSeatScreen({ userData, setUserData, movieName, setMovieName }) {
   const { daysId } = useParams()
   const [movieSeat, setMovieSeat] = useState(null);
   const [name, setName] = useState("");
   const [cpf, setCpf] = useState("");
   const [boughtSeats, setBoughtSeats] = useState("");
+
+
 
   function selectSeat(selectedSeat) {
     setMovieSeat({
@@ -32,13 +34,24 @@ export default function SelectSeatScreen() {
       return seat.id
     })
     setBoughtSeats(ids)
+    setMovieName(movieSeat.movie.title)
     const data = {
       ids,
       name,
       cpf
     }
+    setUserData(
+      {
+        name: name,
+        seats: ids,
+        cpf: cpf
+      }
+    )
     axios.post(`https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many`, data)
   }
+
+  console.log('this is the new data', userData)
+
   useEffect(() => {
     const promise = axios.get(`
 https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${daysId}/seats
